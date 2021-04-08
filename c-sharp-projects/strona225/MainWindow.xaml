@@ -11,19 +11,19 @@
         <GroupBox HorizontalAlignment="Left" Height="135" Margin="10,274,0,0" Width="772" Header="Dom bukmacherski">
             <Grid HorizontalAlignment="Left" Height="135" VerticalAlignment="Top" Width="770" Margin="-5,0,-5,-7">
                 <Label x:Name="minimumBetLabel" Content="minimumBetLabel" Margin="0,0,641,109" FontWeight="Bold"/>
-                <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="170" Margin="179,24,0,0">
-                    <Label x:Name="jarekBetLabel" Content="jarekBetLabel" HorizontalAlignment="Left" Margin="0,-5,0,-3" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="0" Width="130"/>
-                </Border>
-                <RadioButton x:Name="janekRadioButton" Content="janekRadioButton" Checked="janekRadioButton_Checked" Margin="4,26,641,94"/>
-                <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="170" Margin="179,49,0,0">
-                    <Label x:Name="bartekBetLabel" Content="bartekBetLabel" HorizontalAlignment="Left" Margin="-2,-3,0,-5" VerticalAlignment="Top" BorderThickness="0" BorderBrush="Black" Width="130"/>
-                </Border>
-                <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="170" Margin="179,74,0,0">
-                    <Label x:Name="arekBetLabel" Content="arekBetLabel" HorizontalAlignment="Left" Margin="-2,-3,0,-5" VerticalAlignment="Top" BorderBrush="Black" Width="130"/>
-                </Border>
+                <Label x:Name="jarekBetLabel" Content="janekBetLabel" HorizontalAlignment="Left" Margin="179,20,0,0" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="0" Width="130"/>
+                <Label x:Name="bartekBetLabel" Content="bartekBetLabel" HorizontalAlignment="Left" Margin="179,40,0,0" VerticalAlignment="Top" BorderThickness="0" BorderBrush="Black" Width="130"/>
+                <Label x:Name="arekBetLabel" Content="arekBetLabel" HorizontalAlignment="Left" Margin="179,60,0,0" VerticalAlignment="Top" BorderBrush="Black" Width="130"/>
+                <RadioButton x:Name="janekRadioButton" Content="janekRadioButton" Checked="janekRadioButton_Checked" Margin="4,26,641,94" IsChecked="True"/>
                 <RadioButton x:Name="bartekRadioButton" Content="bartekRadioButton" Margin="4,46,641,74"/>
                 <RadioButton x:Name="arekRadioButton" Content="arekRadioButton" Margin="4,66,641,54"/>
                 <Label Content="Zakłady" HorizontalAlignment="Left" Margin="179,0,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                <Label Content="name" HorizontalAlignment="Left" Margin="10,86,0,0" VerticalAlignment="Top"/>
+                <Button Content="stawia" HorizontalAlignment="Left" Margin="69,89,0,0" VerticalAlignment="Top" Width="75"/>
+                <TextBox HorizontalAlignment="Left" Height="20" Margin="154,89,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="50" TextChanged="TextBox_TextChanged"/>
+                <Label Content="zł na czarta nr:" HorizontalAlignment="Left" Margin="214,86,0,0" VerticalAlignment="Top"/>
+                <TextBox HorizontalAlignment="Left" Height="20" Margin="309,89,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="50" TextChanged="TextBox_TextChanged"/>
+                <Button Content="Start!" HorizontalAlignment="Left" Margin="389,10,0,0" VerticalAlignment="Top" Width="175" Height="102" FontWeight="Bold" FontSize="24"/>
             </Grid>
         </GroupBox>
 
