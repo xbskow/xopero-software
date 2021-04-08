@@ -44,5 +44,15 @@ namespace strona201
             lloyd = lucindaBackup;
             MessageBox.Show("Obiekty zamienione.", "Wiadomość");
         }
+
+        private void button4_Click(object sender, RoutedEventArgs e)
+        {
+            lloyd.TellMe("Cześć", lucinda);
+        }
+
+        private void button5_Click(object sender, RoutedEventArgs e)
+        {
+            lucinda.SpeakTo(lloyd, "Witaj");
+        }
     }
 }
