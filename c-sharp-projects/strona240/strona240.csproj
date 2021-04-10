@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6683A358-0B51-412E-858A-6D9515D95565}</ProjectGuid>
+    <ProjectGuid>{F7744102-CCFB-4274-926F-EE11D1BD013B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>strona225</RootNamespace>
-    <AssemblyName>strona225</AssemblyName>
+    <RootNamespace>strona240</RootNamespace>
+    <AssemblyName>strona240</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -63,9 +63,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Bet.cs" />
-    <Compile Include="Greyhound.cs" />
-    <Compile Include="Guy.cs" />
+    <Compile Include="DinnerParty.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -96,12 +94,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="racetrack.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="dog.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
