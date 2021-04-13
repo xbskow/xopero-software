@@ -13,51 +13,47 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace strona240
+namespace strona270
 {
 
     public partial class MainWindow : Window
     {
         DinnerParty dinnerParty;
-        int people = 5;
         public MainWindow()
         {
             InitializeComponent();
-            dinnerParty = new DinnerParty();
-            dinnerParty.SetPartyOptions(people, false);
-            guestsLabel.Text = dinnerParty.GetNumberOfPeople().ToString();
-            dinnerParty.CalculateCostOfDecorations(false);
+            dinnerParty = new DinnerParty(5, true, false);
+            fancyBox.IsChecked = false;
             healthyBox.IsChecked = true;
-            dinnerParty.SetHealthyOption(true);
-
+            healthyBox.Content = "Opcja zdrowa";
+            guestsLabel.Text = "5";
+            
             DisplayDinnerPartyCost();
         }
 
         private void DisplayDinnerPartyCost()
         {
-            decimal Cost = dinnerParty.CalculateCost((bool) healthyBox.IsChecked);
+            decimal Cost = dinnerParty.Cost;
             costLabel.Content = Cost.ToString("c");
         }
 
         private void guestsLabel_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (int.TryParse(guestsLabel.Text, out int _)) {
-                people = int.Parse(guestsLabel.Text);
-                dinnerParty.SetPartyOptions(people, (bool) fancyBox.IsChecked);
+            if (int.TryParse(guestsLabel.Text, out _)) {
+                dinnerParty.NumberOfPeople = int.Parse(guestsLabel.Text);
                 DisplayDinnerPartyCost();
             }
-
         }
 
         private void fancyBox_Checked(object sender, RoutedEventArgs e)
         {
-            dinnerParty.SetPartyOptions(people, (bool) fancyBox.IsChecked);
+            dinnerParty.FancyDecorations = (bool) fancyBox.IsChecked;
             DisplayDinnerPartyCost();
         }
 
         private void healthyBox_Checked(object sender, RoutedEventArgs e)
         {
-            dinnerParty.SetHealthyOption((bool) healthyBox.IsChecked);
+            dinnerParty.HealthyOption = (bool)fancyBox.IsChecked;
             DisplayDinnerPartyCost();
         }
     }
