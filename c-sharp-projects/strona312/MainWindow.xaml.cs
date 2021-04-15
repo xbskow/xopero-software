@@ -13,22 +13,27 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace strona270
+namespace strona312
 {
 
     public partial class MainWindow : Window
     {
         DinnerParty dinnerParty;
+        BirthdayParty birthdayParty;
         public MainWindow()
         {
             InitializeComponent();
             dinnerParty = new DinnerParty(5, true, false);
+            birthdayParty = new BirthdayParty(5, false, "Sto lat!");
             fancyBox.IsChecked = false;
             healthyBox.IsChecked = true;
             healthyBox.Content = "Opcja zdrowa";
             guestsLabel.Text = "5";
-            
+            cakeWriting.Text = "Sto lat!";
+            fancyBirthday.IsChecked = false;
+
             DisplayDinnerPartyCost();
+            DisplayBirthdayPartyCost();
         }
 
         private void DisplayDinnerPartyCost()
@@ -39,22 +44,50 @@ namespace strona270
 
         private void guestsLabel_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (int.TryParse(guestsLabel.Text, out _)) {
+            if (int.TryParse(guestsLabel.Text, out _))
+            {
                 dinnerParty.NumberOfPeople = int.Parse(guestsLabel.Text);
                 DisplayDinnerPartyCost();
+            }
+        }
+        private void numberBirthday_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (int.TryParse(numberBirthday.Text, out _))
+            {
+                birthdayParty.NumberOfPeople = int.Parse(numberBirthday.Text);
+                DisplayBirthdayPartyCost();
             }
         }
 
         private void fancyBox_Checked(object sender, RoutedEventArgs e)
         {
-            dinnerParty.FancyDecorations = (bool) fancyBox.IsChecked;
+            dinnerParty.FancyDecorations = (bool)fancyBox.IsChecked;
             DisplayDinnerPartyCost();
         }
 
         private void healthyBox_Checked(object sender, RoutedEventArgs e)
         {
-            dinnerParty.HealthyOption = (bool) healthyBox.IsChecked;
+            dinnerParty.HealthyOption = (bool)healthyBox.IsChecked;
             DisplayDinnerPartyCost();
+        }
+
+        private void fancyBirthday_Checked(object sender, RoutedEventArgs e)
+        {
+            birthdayParty.FancyDecorations = (bool)fancyBirthday.IsChecked;
+            DisplayBirthdayPartyCost();
+        }
+
+        private void cakeWriting_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            birthdayParty.CakeWriting = cakeWriting.Text;
+            DisplayBirthdayPartyCost();
+        }
+
+        private void DisplayBirthdayPartyCost()
+        {
+            tooLongLabel.IsEnabled = birthdayParty.CakeWritingTooLong;
+            decimal cost = birthdayParty.Cost;
+            birthdayCost.Content = cost.ToString("c");
         }
     }
 }

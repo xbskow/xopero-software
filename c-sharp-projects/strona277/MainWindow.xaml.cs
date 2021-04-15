@@ -67,7 +67,7 @@ namespace strona277
 
         private void healthyBox_Checked(object sender, RoutedEventArgs e)
         {
-            dinnerParty.HealthyOption = (bool)fancyBox.IsChecked;
+            dinnerParty.HealthyOption = (bool)healthyBox.IsChecked;
             DisplayDinnerPartyCost();
         }
 

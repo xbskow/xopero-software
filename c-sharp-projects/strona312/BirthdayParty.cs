@@ -4,19 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace strona277
+namespace strona312
 {
-    class BirthdayParty
+    class BirthdayParty : Party
     {
-        public const int CostOfFoodPerPerson = 25;
-        public int NumberOfPeople { get; set; }
-        public bool FancyDecorations { get; set; }
         public string CakeWriting { get; set; }
-        
-        public BirthdayParty(int numberOfPeople, bool fancyDecorations, string cakeWriting)
+
+        public BirthdayParty(int numberOfPeople, bool fancyDecorations, string cakeWriting) : base(numberOfPeople, fancyDecorations)
         {
-            NumberOfPeople = numberOfPeople;
-            FancyDecorations = fancyDecorations;
             CakeWriting = cakeWriting;
         }
 
@@ -52,21 +47,11 @@ namespace strona277
             }
         }
 
-        private decimal CalculateCostOfDecorations()
-        {
-            decimal costOfDecorations;
-            if (FancyDecorations) costOfDecorations = (NumberOfPeople * 15m) + 50m;
-            else costOfDecorations = (NumberOfPeople * 7.5m) + 30m;
-            return costOfDecorations;
-        }
-
-        public decimal Cost
+        override public decimal Cost
         {
             get
             {
-                decimal totalCost = CalculateCostOfDecorations();
-                totalCost += CostOfFoodPerPerson * NumberOfPeople;
-                if (NumberOfPeople > 12) totalCost += 100;
+                decimal totalCost = base.Cost;
                 decimal cakeCost;
                 if (CakeSize() == 20) cakeCost = 40m + ActualLength * 0.25m;
                 else cakeCost = 75m + ActualLength * 0.25m;
