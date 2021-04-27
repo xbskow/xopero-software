@@ -1,0 +1,17 @@
+﻿<Window x:Class="strona147.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:strona147"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="200" Width="600">
+    <Grid>
+        <TextBox x:Name="stringText" HorizontalAlignment="Left" Height="35" Margin="160,20,0,0" TextWrapping="Wrap" Text="Witaj!" VerticalAlignment="Top" Width="250" FontSize="25"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,20,0,0" TextWrapping="Wrap" Text="Powiedz to:" VerticalAlignment="Top" FontSize="25"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="25" Text="Liczba razy:"/>
+        <TextBox x:Name="intText" HorizontalAlignment="Left" Height="35" Margin="160,60,0,0" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Width="120" FontSize="25"/>
+        <Button x:Name="submitButton" Content="Mów do mnie!" HorizontalAlignment="Center" Width="100" VerticalAlignment="Bottom" Margin="0,0,0,20" Click="submitButton_Click"/>
+
+    </Grid>
+</Window>

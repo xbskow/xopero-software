@@ -1,0 +1,18 @@
+﻿<Window x:Class="strona240.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:strona240"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="200" Width="200">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Ilość osób" VerticalAlignment="Top"/>
+        <TextBox x:Name="guestsLabel" HorizontalAlignment="Left" Height="23" Margin="10,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="guestsLabel_TextChanged"/>
+        <CheckBox x:Name="fancyBox" Content="Dekoracje fantazyjne" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top" Checked="fancyBox_Checked" Unchecked="fancyBox_Checked"/>
+        <CheckBox x:Name="healthyBox" Content="Opcja zdrowa" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top" Checked="healthyBox_Checked" Unchecked="healthyBox_Checked"/>
+        <Label Content="Koszt" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="costLabel" Content="500" HorizontalAlignment="Left" Margin="56,114,0,0" VerticalAlignment="Top" FontWeight="Bold" BorderBrush="Black" BorderThickness="1"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,15 @@
+﻿<Window x:Class="strona262.MainWindow"
+        
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:strona262"
+        mc:Ignorable="d"
+        Title="Kalkulator Krów" Height="100" Width="200">
+    <Grid>
+        <TextBox x:Name="numberOfCowsBox" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="60" Margin="60,0,0,25" TextChanged="numberOfCowsBox_TextChanged"/>
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Ilość krów" VerticalAlignment="Center" Width="60" Margin="0,0,60,25"/>
+        <Button x:Name="calculate" Content="Oblicz" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="75" Margin="0,0,0,5" Click="calculate_Click"/>
+    </Grid>
+</Window>
