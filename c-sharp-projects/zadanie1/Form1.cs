@@ -8,12 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using FileOperations;
 
 namespace zadanie1
 {
     public partial class Form1 : Form
     {
-        FileOperations FileOps = new FileOperations();
+        FileClass FileOps = new FileClass();
         public Form1()
         {
             InitializeComponent();
