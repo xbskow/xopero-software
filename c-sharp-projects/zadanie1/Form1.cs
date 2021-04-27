@@ -30,8 +30,11 @@ namespace zadanie1
             switch (type)
             {
                 case "encrypt":
+                    //debugOutput($"Rozpoczęto zadanie {type}");
+                    FileOps.Encryption(source);
                     break;
                 case "decrypt":
+                    FileOps.Decryption(source);
                     break;
                 case "compress":
                     FileOps.Compress(source, destination, isFolder, toEncrypt);
@@ -44,6 +47,9 @@ namespace zadanie1
                     break;
                 case "delete":
                     FileOps.Delete(source, isFolder);
+                    break;
+                default:
+                    debugOutput($"Zadanie {type} nie jest w puli dostępnych zadań");
                     break;
             }
         }

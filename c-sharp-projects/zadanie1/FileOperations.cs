@@ -4,20 +4,61 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Security.Cryptography;
 using Aspose.Zip;
 
 namespace zadanie1
 {
     class FileOperations
     {
+        string password = "8Rlba_Uk4";
+        byte[] saltValueBytes = Encoding.ASCII.GetBytes("This is my salt");
         #region encryption
-        public void Encrypt()
+        public void Encryption(string source)
         {
-            // rzeczy
+            string destination = source + ".enc";
+
+            Rfc2898DeriveBytes passwordKey = new Rfc2898DeriveBytes(password, saltValueBytes);
+
+            RijndaelManaged alg = new RijndaelManaged();
+            alg.Key = passwordKey.GetBytes(alg.KeySize / 8);
+            alg.IV = passwordKey.GetBytes(alg.BlockSize / 8);
+
+            using (FileStream inFile = new FileStream(source, FileMode.Open, FileAccess.Read))
+            {
+                byte[] fileData = new byte[inFile.Length];
+                inFile.Read(fileData, 0, (int)inFile.Length);
+                ICryptoTransform encryptor = alg.CreateEncryptor();
+
+                using (FileStream outFile = new FileStream(destination, FileMode.OpenOrCreate, FileAccess.Write))
+                {
+                    CryptoStream encryptStream = new CryptoStream(outFile, encryptor, CryptoStreamMode.Write);
+                    encryptStream.Write(fileData, 0, fileData.Length);
+                }
+            }
         }
-        public void Decrypt()
+        public void Decryption(string source)
         {
-            // rzeczy
+            string destination = source + ".dec";
+
+            Rfc2898DeriveBytes passwordKey = new Rfc2898DeriveBytes(password, saltValueBytes);
+
+            RijndaelManaged alg = new RijndaelManaged();
+            alg.Key = passwordKey.GetBytes(alg.KeySize / 8);
+            alg.IV = passwordKey.GetBytes(alg.BlockSize / 8);
+            
+            ICryptoTransform decryptor = alg.CreateDecryptor();
+            using (FileStream inFile = new FileStream(source, FileMode.Open, FileAccess.Read))
+            {
+                CryptoStream decryptStream = new CryptoStream(inFile, decryptor, CryptoStreamMode.Read);
+                byte[] fileData = new byte[inFile.Length];
+                decryptStream.Read(fileData, 0, (int)inFile.Length);
+
+                using (FileStream outFile = new FileStream(destination, FileMode.OpenOrCreate, FileAccess.Write))
+                {
+                    outFile.Write(fileData, 0, fileData.Length);
+                }
+            }
         }
         #endregion
         #region compression
@@ -183,4 +224,3 @@ namespace zadanie1
         }
     }
 }
-
