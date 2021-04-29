@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace strona320
 {
-    class Queen
+    class Queen : Bee
     {
-        public Queen(Worker[] workers)
+        public Queen(Worker[] workers, double weightMg) : base(weightMg)
         {
             this.workers = workers;
         }
@@ -25,10 +25,12 @@ namespace strona320
 
         public string WorkTheNextShift()
         {
+            double honeyConsumed = HoneyConsumptionRate();
             shiftNumber++;
             string report = $"Raport zmiany numer {shiftNumber}\r\n";
             for (int i = 0; i < workers.Length; i++)
             {
+                honeyConsumed += workers[i].HoneyConsumptionRate();
                 workers[i].WorkOneShift();
                 if (workers[i].ShiftsLeft > 0)
                 {
@@ -42,6 +44,7 @@ namespace strona320
                     report += $"Robotnica numer {i} nie pracuje\r\n";
                 }
             }
+            report += $"Całkowite spożycie miodu: {honeyConsumed} jednostek\r\n";
             return report;
         }
     }

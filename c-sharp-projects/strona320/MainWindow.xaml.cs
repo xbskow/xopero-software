@@ -26,11 +26,24 @@ namespace strona320
             InitializeComponent();
             workerBeeJob.SelectedIndex = 0;
             Worker[] workers = new Worker[4];
-            workers[0] = new Worker(new string[] { "Zbieranie nektaru", "Wytwarzanie miodu" });
-            workers[1] = new Worker(new string[] { "Pielęgnacja jaj", "Nauczanie pszczółek" });
-            workers[2] = new Worker(new string[] { "Utrzymywanie ula", "Patrol z żądłami" });
-            workers[3] = new Worker(new string[] { "Zbieranie nektaru", "Wytwarzanie miodu", "Pielęgnacja jaj", "Nauczanie pszczółek", "Utrzymywanie ula", "Patrol z żądłami" });
-            queen = new Queen(workers);
+            workers[0] = new Worker(new string[] { "Zbieranie nektaru", "Wytwarzanie miodu" }, 175);
+            workers[1] = new Worker(new string[] { "Pielęgnacja jaj", "Nauczanie pszczółek" }, 114);
+            workers[2] = new Worker(new string[] { "Utrzymywanie ula", "Patrol z żądłami" }, 149);
+            workers[3] = new Worker(new string[] { "Zbieranie nektaru", "Wytwarzanie miodu", "Pielęgnacja jaj", "Nauczanie pszczółek", "Utrzymywanie ula", "Patrol z żądłami" }, 155);
+            queen = new Queen(workers, 275);
+        }
+
+        private void assignButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (queen.AssignWork(workerBeeJob.Text, int.Parse(shifts.Text)) == true)
+                MessageBox.Show($"Nie ma dostępnych robotnic do wykonania zadania '{workerBeeJob.Text}'", "Królowa pszczół mówi...");
+            else
+                MessageBox.Show($"Zadanie '{workerBeeJob.Text}' będzie ukończone za {shifts.Text} zmiany", "Królowa pszczół mówi...");
+        }
+
+        private void nextShift_Click(object sender, RoutedEventArgs e)
+        {
+            report.Text = queen.WorkTheNextShift();
         }
     }
 }

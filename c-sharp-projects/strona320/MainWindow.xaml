@@ -20,9 +20,9 @@
                 <TextBox x:Name="shifts" HorizontalAlignment="Left" Height="23" Margin="154,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                 <TextBlock HorizontalAlignment="Left" Margin="154,15,0,0" TextWrapping="Wrap" Text="Zmiany" VerticalAlignment="Top"/>
                 <TextBlock HorizontalAlignment="Left" Margin="10,18,0,0" TextWrapping="Wrap" Text="Zadanie robotnicy" VerticalAlignment="Top"/>
-                <Button x:Name="assignButton" Content="Przypisz tę pracę pszczele" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" Width="264"/>
+                <Button x:Name="assignButton" Content="Przypisz tę pracę pszczele" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" Width="264" Click="assignButton_Click"/>
                 <TextBox x:Name="report" HorizontalAlignment="Left" Height="151" Margin="10,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="352"/>
-                <Button x:Name="nextShift" Content="Przepracuj&#xD;&#xA;następną&#xD;&#xA;zmianę" HorizontalAlignment="Left" Margin="281,18,0,0" VerticalAlignment="Top" Width="81" Height="70" FontWeight="Bold"/>
+                <Button x:Name="nextShift" Content="Przepracuj&#xD;&#xA;następną&#xD;&#xA;zmianę" HorizontalAlignment="Left" Margin="281,18,0,0" VerticalAlignment="Top" Width="81" Height="70" FontWeight="Bold" Click="nextShift_Click"/>
             </Grid>
         </GroupBox>
     </Grid>
