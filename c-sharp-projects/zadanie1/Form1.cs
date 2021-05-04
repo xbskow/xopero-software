@@ -1,14 +1,17 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using FileOperations;
+using SharpAESCrypt;
 
 namespace zadanie1
 {
@@ -22,39 +25,54 @@ namespace zadanie1
         #region UI events
         private void processButton_Click(object sender, EventArgs e)
         {
-            // debugOutput(txtInput.Text);
             deserializeJSON(txtInput.Text);
         }
 
-        private void UseFunctionality(string type, string source, string destination, bool isFolder, bool toEncrypt)
+        private void UseFunctionality(JsonOps jsonQuery)
         {
-            switch (type)
+            Thread[] threads = new Thread[jsonQuery.tasks.Length];
+            int threadCount = 0;
+            foreach (JsonOps.taskArr taskDetails in jsonQuery.tasks)
             {
-                case "encrypt":
-                    //debugOutput($"Rozpoczęto zadanie {type}");
-                    FileOps.Encryption(source);
-                    break;
-                case "decrypt":
-                    FileOps.Decryption(source);
-                    break;
-                case "compress":
-                    FileOps.Compress(source, destination, isFolder, toEncrypt);
-                    break;
-                case "decompress":
-                    FileOps.Decompress(source, destination, isFolder);
-                    break;
-                case "copy":
-                    FileOps.Copy(source, destination, isFolder, toEncrypt);
-                    break;
-                case "delete":
-                    FileOps.Delete(source, isFolder);
-                    break;
-                default:
-                    debugOutput($"Zadanie {type} nie jest w puli dostępnych zadań");
-                    break;
+                JsonOps.taskInfo task = taskDetails.task;
+                try
+                {
+                    switch (task.type)
+                    {
+                        case "encrypt":
+                            threads[threadCount] = new Thread(() => debugOutput(FileOps.Encryption(task.source, task.title, task.verify)));
+                            threads[threadCount].IsBackground = true;
+                            break;
+                        case "decrypt":
+                            threads[threadCount] = new Thread(() => debugOutput(FileOps.Decryption(task.source, task.title)));
+                            break;
+                        case "compress":
+                            threads[threadCount] = new Thread(() => debugOutput(FileOps.Compress(task.source, task.title, task.verify)));
+                            threads[threadCount].IsBackground = true;
+                            break;
+                        case "decompress":
+                            threads[threadCount] = new Thread(() => debugOutput(FileOps.Decompress(task.source, task.title)));
+                            break;
+                        case "copy":
+                            threads[threadCount] = new Thread(() => debugOutput(FileOps.Copy(task.source, task.title)));
+                            break;
+                        case "delete":
+                            threads[threadCount] = new Thread(() => debugOutput(FileOps.Delete(task.source)));
+                            break;
+                        default:
+                            debugOutput($"Zadanie {task.type} nie jest w puli dostępnych zadań");
+                            break;
+                    }
+                    threads[threadCount].Start();
+                    threadCount++;
+                }
+                catch (FileNotFoundException e)
+                {
+                    debugOutput($"{e.Message} w zadaniu {task.title}");
+                }
+
             }
         }
-
         private void clearButton_Click(object sender, EventArgs e)
         {
             textDebugOutput.Text = string.Empty;
@@ -66,18 +84,20 @@ namespace zadanie1
         {
             try
             {
-                var jsonQuery = JsonConvert.DeserializeObject<JsonOps>(strJSON);
-
-                debugOutput($"json object: {jsonQuery.ToString()}");
-                debugOutput($"\ntask info:");
-                debugOutput($"\n - name: {jsonQuery.task.type}");
-                debugOutput($"\n - is folder: {jsonQuery.task.isFolder}");
-                debugOutput($"\n - source: {jsonQuery.task.source}");
-                debugOutput($"\n - destination: {jsonQuery.task.destination}");
-                debugOutput($"\n - to encrypt: {jsonQuery.task.toEncrypt}");
-
-                UseFunctionality(jsonQuery.task.type, jsonQuery.task.source, jsonQuery.task.destination, jsonQuery.task.isFolder, jsonQuery.task.toEncrypt);
-
+                strJSON = strJSON.Replace(@"\", @"\\");
+                JsonOps jsonQuery = JsonConvert.DeserializeObject<JsonOps>(strJSON);
+                debugOutput($"{jsonQuery.tasks.Length.ToString()} tasks...");
+                foreach (JsonOps.taskArr i in jsonQuery.tasks)
+                {
+                    debugOutput($"json object: {jsonQuery.ToString()}");
+                    debugOutput($"\ntask info:");
+                    debugOutput($"\n - name: {i.task.type}");
+                    debugOutput($"\n - source: {i.task.source}");
+                    UseFunctionality(jsonQuery);
+                    //UseFunctionality(jsonQuery);
+                    debugOutput($"Rozpoczęto zadanie {i.task.title}\n\n");
+                }
+                debugOutput(jsonQuery.tasks.Length.ToString());
             }
             catch (Exception ex)
             {

@@ -8,17 +8,20 @@ namespace zadanie1
 {
     class JsonOps
     {
-        public taskInfo task { get; set; }
+        public taskArr[] tasks;
         public string date { get; set; }
         public string time { get; set; }
 
         public class taskInfo
         {
+            public string title { get; set; }
             public string type { get; set; }
-            public bool isFolder { get; set; }
             public string source { get; set; }
-            public string destination { get; set; }
-            public bool toEncrypt { get; set; }
+            public bool verify { get; set; }
+        }
+        public class taskArr
+        {
+            public taskInfo task { get; set; }
         }
     }
 }
