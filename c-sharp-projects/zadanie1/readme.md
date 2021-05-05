@@ -43,7 +43,7 @@
       "task": 
       {
         "title": ".iso image copying",
-        "type": "compress",
+        "type": "copy",
         "source": "D:\misc\image.iso",
       },
       "date": "2021-04-22",
