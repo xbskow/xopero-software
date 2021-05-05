@@ -36,9 +36,9 @@ namespace strona320
         private void assignButton_Click(object sender, RoutedEventArgs e)
         {
             if (queen.AssignWork(workerBeeJob.Text, int.Parse(shifts.Text)) == true)
-                MessageBox.Show($"Nie ma dostępnych robotnic do wykonania zadania '{workerBeeJob.Text}'", "Królowa pszczół mówi...");
-            else
                 MessageBox.Show($"Zadanie '{workerBeeJob.Text}' będzie ukończone za {shifts.Text} zmiany", "Królowa pszczół mówi...");
+            else
+                MessageBox.Show($"Nie ma dostępnych robotnic do wykonania zadania '{workerBeeJob.Text}'", "Królowa pszczół mówi...");
         }
 
         private void nextShift_Click(object sender, RoutedEventArgs e)

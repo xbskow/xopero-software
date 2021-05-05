@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <Reference Include="FileOperations">
-      <HintPath>FileOperations.dll</HintPath>
+      <HintPath>..\FileOperations\bin\Debug\net5.0\FileOperations.dll</HintPath>
     </Reference>
   </ItemGroup>
 

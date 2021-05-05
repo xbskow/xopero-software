@@ -31,7 +31,7 @@ namespace FileOperations
                     File.Delete($"C:\\zadanie1\\Decrypted\\{Path.GetFileName(source)}");
                 }
                 return Finish(true, title) + verification;
-                
+
             }
             catch (Exception e)
             {

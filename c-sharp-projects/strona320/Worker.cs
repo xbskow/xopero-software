@@ -22,12 +22,12 @@ namespace strona320
             return consumption;
         }
 
-        public string currentJob;
-        private string CurrentJob
+        public string CurrentJob;
+        private string currentJob
         {
             get
             {
-                return currentJob;
+                return CurrentJob;
             }
         }
         public int ShiftsLeft
@@ -50,7 +50,7 @@ namespace strona320
             {
                 if (job == jobICanDo)
                 {
-                    currentJob = job;
+                    CurrentJob = job;
                     this.shiftsToWork = shiftsToWork;
                     shiftsWorked = 0;
                     return true;
@@ -58,6 +58,21 @@ namespace strona320
             }
             return false;
 
+        }
+        public bool DidYouFinish()
+        {
+            if (String.IsNullOrEmpty(currentJob))
+                return false;
+            shiftsWorked++;
+            if (shiftsWorked > shiftsToWork)
+            {
+                shiftsWorked = 0;
+                shiftsToWork = 0;
+                CurrentJob = "";
+                return true;
+            }
+            else
+                return false;
         }
         public bool WorkOneShift()
         {
@@ -68,7 +83,7 @@ namespace strona320
             {
                 shiftsToWork = 0;
                 shiftsWorked = 0;
-                currentJob = "";
+                CurrentJob = "";
                 return true;
             }
             else
