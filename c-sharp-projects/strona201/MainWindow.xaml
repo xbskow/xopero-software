@@ -1,0 +1,17 @@
+﻿<Window x:Class="strona201.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:strona201"
+        mc:Ignorable="d"
+        Title="Zamiana" Height="200" Width="250">
+    <Grid>
+        <Button x:Name="lloydBox" Content="Lloyd" HorizontalAlignment="Center" VerticalAlignment="Top" Width="75" Margin="0,20,0,0" Click="lloydBox_Click"/>
+        <Button x:Name="lucindaBox" Content="Lucinda" HorizontalAlignment="Center" VerticalAlignment="Top" Width="75" Margin="0,60,0,0" Click="lucindaBox_Click"/>
+        <Button x:Name="swapBox" Content="Zamień!" HorizontalAlignment="Center" VerticalAlignment="Center" Width="74" Margin="0,50,0,0" Click="swapBox_Click"/>
+        <Button x:Name="button4" Content="button4" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="75" Margin="0,0,100,10" Click="button4_Click"/>
+        <Button x:Name="button5" Content="button5" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="75" Margin="100,0,0,10" Click="button5_Click"/>
+
+    </Grid>
+</Window>
