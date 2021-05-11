@@ -19,16 +19,7 @@ namespace strona397
                 new Shoe() { Style = Style.Loafers, Color = "Czerwony" },
                 new Shoe() { Style = Style.Sneakers, Color = "Zielony" }
             };
-            /*
-            List<Shoe> shoeCloset = new List<Shoe>();
 
-            shoeCloset.Add(new Shoe() { Style = Style.Sneakers, Color = "Czarny" });
-            shoeCloset.Add(new Shoe() { Style = Style.Clogs, Color = "Brązowy" });
-            shoeCloset.Add(new Shoe() { Style = Style.Wingtips, Color = "Czarny" });
-            shoeCloset.Add(new Shoe() { Style = Style.Loafers, Color = "Biały" });
-            shoeCloset.Add(new Shoe() { Style = Style.Loafers, Color = "Czerwony" });
-            shoeCloset.Add(new Shoe() { Style = Style.Sneakers, Color = "Zielony" });
-            */
             int numberOfShoes = shoeCloset.Count;
             foreach (Shoe shoe in shoeCloset)
             {
