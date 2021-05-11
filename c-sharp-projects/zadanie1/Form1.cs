@@ -1,23 +1,14 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using FileOperations;
 using Newtonsoft.Json;
-using FileOperations;
-using SharpAESCrypt;
+using System;
+using System.IO;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace zadanie1
 {
     public partial class Form1 : Form
     {
-        FileClass FileOps = new FileClass();
         public Form1()
         {
             InitializeComponent();
@@ -40,24 +31,24 @@ namespace zadanie1
                     switch (task.type)
                     {
                         case "encrypt":
-                            threads[threadCount] = new Thread(() => debugOutput(FileOps.Encryption(task.source, task.title, task.verify)));
+                            threads[threadCount] = new Thread(() => debugOutput(Encryption.Encrypt(task.source, task.title, task.verify)));
                             threads[threadCount].IsBackground = true;
                             break;
                         case "decrypt":
-                            threads[threadCount] = new Thread(() => debugOutput(FileOps.Decryption(task.source, task.title)));
+                            threads[threadCount] = new Thread(() => debugOutput(Encryption.Decrypt(task.source, task.title)));
                             break;
                         case "compress":
-                            threads[threadCount] = new Thread(() => debugOutput(FileOps.Compress(task.source, task.title, task.verify)));
+                            threads[threadCount] = new Thread(() => debugOutput(Compression.Compress(task.source, task.title, task.verify)));
                             threads[threadCount].IsBackground = true;
                             break;
                         case "decompress":
-                            threads[threadCount] = new Thread(() => debugOutput(FileOps.Decompress(task.source, task.title)));
+                            threads[threadCount] = new Thread(() => debugOutput(Compression.Decompress(task.source, task.title)));
                             break;
                         case "copy":
-                            threads[threadCount] = new Thread(() => debugOutput(FileOps.Copy(task.source, task.title)));
+                            threads[threadCount] = new Thread(() => debugOutput(CopyDelete.Copy(task.source, task.title)));
                             break;
                         case "delete":
-                            threads[threadCount] = new Thread(() => debugOutput(FileOps.Delete(task.source)));
+                            threads[threadCount] = new Thread(() => debugOutput(CopyDelete.Delete(task.source)));
                             break;
                         default:
                             debugOutput($"Zadanie {task.type} nie jest w puli dostępnych zadań");
@@ -94,7 +85,6 @@ namespace zadanie1
                     debugOutput($"\n - name: {i.task.type}");
                     debugOutput($"\n - source: {i.task.source}");
                     UseFunctionality(jsonQuery);
-                    //UseFunctionality(jsonQuery);
                     debugOutput($"Rozpoczęto zadanie {i.task.title}\n\n");
                 }
                 debugOutput(jsonQuery.tasks.Length.ToString());
