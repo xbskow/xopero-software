@@ -18,7 +18,7 @@ namespace strona409
             for (int i = 0; i < 5; i++)
             {
                 cards.Add(new Card((Suits)random.Next(4), (Values)random.Next(1, 14)));
-                Console.WriteLine(cards[i].Name);
+                Console.WriteLine(cards[i]);
             }
 
             cards.Sort(compareByValue);
@@ -26,7 +26,7 @@ namespace strona409
             Console.WriteLine("\nTe same karty posortowane:");
             for (int i = 0; i < cards.Count; i++)
             {
-                Console.WriteLine(cards[i].Name);
+                Console.WriteLine(cards[i]);
             }
 
             Console.ReadKey();

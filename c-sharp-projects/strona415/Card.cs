@@ -1,4 +1,4 @@
-﻿namespace strona409
+﻿namespace strona415
 {
     class Card
     {
@@ -16,6 +16,23 @@
                 return $"{Value} of {Suit}";
             }
         }
+
+        public static bool DoesCardMatch(Card CardToCheck, Suits Suit)
+        {
+            if (CardToCheck.Suit == Suit)
+                return true;
+            else
+                return false;
+        } 
+
+        public static bool DoesCardMatch(Card CardToCheck, Values Value)
+        {
+            if (CardToCheck.Value == Value)
+                return true;
+            else
+                return false;
+        }
+
         public override string ToString()
         {
             return Name;

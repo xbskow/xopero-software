@@ -9,7 +9,7 @@ namespace strona403
         {
             foreach (Duck duck in ducks)
             {
-                Console.WriteLine($"{duck.Size}-centymetrowa kaczka {duck.Kind}");
+                Console.WriteLine(duck);
             }
             Console.WriteLine("Koniec kaczek!");
         }
