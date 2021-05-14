@@ -71,7 +71,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "strona415", "strona415\stro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "strona416", "strona416\strona416.csproj", "{8C5F2B3A-AF73-4F07-9CA1-AD02C3356B6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "strona423", "strona423\strona423.csproj", "{6B0D7BB6-1A3D-43EF-BE6D-2A9A413C2FDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "strona423", "strona423\strona423.csproj", "{6B0D7BB6-1A3D-43EF-BE6D-2A9A413C2FDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "strona424", "strona424\strona424.csproj", "{7725AFD7-AC36-4199-BD32-DC0A245F82ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -219,6 +221,10 @@ Global
 		{6B0D7BB6-1A3D-43EF-BE6D-2A9A413C2FDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B0D7BB6-1A3D-43EF-BE6D-2A9A413C2FDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B0D7BB6-1A3D-43EF-BE6D-2A9A413C2FDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7725AFD7-AC36-4199-BD32-DC0A245F82ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7725AFD7-AC36-4199-BD32-DC0A245F82ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7725AFD7-AC36-4199-BD32-DC0A245F82ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7725AFD7-AC36-4199-BD32-DC0A245F82ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
