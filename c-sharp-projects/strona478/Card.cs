@@ -1,5 +1,12 @@
-﻿namespace strona424
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace strona478
 {
+    [Serializable]
     class Card
     {
         public Card(Suits suit, Values value)

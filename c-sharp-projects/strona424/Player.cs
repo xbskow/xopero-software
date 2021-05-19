@@ -17,7 +17,11 @@ namespace strona424
 
         public Player(String name, Random random, TextBox textBoxOnForm)
         {
-
+            this.cards = new Deck(new Card[] { });
+            this.name = name;
+            this.random = random;
+            this.textBoxOnForm = textBoxOnForm;
+            textBoxOnForm.Text += $"{name} dołączył do gry\r\n";
         }
 
         public IEnumerable<Values> PullOutBooks()
@@ -42,22 +46,51 @@ namespace strona424
 
         public Values GetRandomValue()
         {
-
+            Card randomCard = cards.Peek(random.Next(cards.Count));
+            return randomCard.Value;
         }
 
         public Deck DoYouHaveAny(Values value)
         {
-
+            Deck cardsIHave = cards.PullOutValues(value);
+            textBoxOnForm.Text += 
+                $"{Name} ma {cardsIHave.Count} {Card.Plural(value, cardsIHave.Count)}{Environment.NewLine}";
+            return cardsIHave;
         }
 
         public void AskForACard(List<Player> players, int myIndex, Deck stock)
         {
-
+            if (stock.Count > 0)
+            {
+                if (cards.Count > 0)
+                    cards.Add(stock.Deal());
+                Values randomValue = GetRandomValue();
+                AskForACard(players, myIndex, stock, randomValue);
+            }
         }
 
         public void AskForACard(List<Player> players, int myIndex, Deck stock, Values value)
         {
-
+            textBoxOnForm.Text +=
+                $"{Name} pyta czy ktoś ma {Card.Plural(value, 1)}{Environment.NewLine}";
+            int totalCardsGiven = 0;
+            for (int i = 0; i < players.Count; i++)
+            {
+                if (i != myIndex)
+                {
+                    Player player = players[i];
+                    Deck CardsGiven = player.DoYouHaveAny(value);
+                    totalCardsGiven += CardsGiven.Count;
+                    while (CardsGiven.Count > 0)
+                        cards.Add(CardsGiven.Deal());
+                }
+            }
+            if (totalCardsGiven == 0)
+            {
+                textBoxOnForm.Text +=
+                    $"{Name} pobrał kartę z kupki.{Environment.NewLine}";
+                cards.Add(stock.Deal());
+            }
         }
 
         public int CardCount { get { return cards.Count; } }

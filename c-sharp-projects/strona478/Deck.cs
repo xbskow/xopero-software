@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace strona424
+namespace strona478
 {
+    [Serializable]
     class Deck
     {
         private List<Card> cards;
