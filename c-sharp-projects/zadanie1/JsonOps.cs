@@ -17,6 +17,8 @@ namespace zadanie1
             public string title { get; set; }
             public string type { get; set; }
             public string source { get; set; }
+            public string copyDestination { get; set; }
+            public string encryptionPassword { get; set; }
             public bool verify { get; set; }
         }
         public class taskArr

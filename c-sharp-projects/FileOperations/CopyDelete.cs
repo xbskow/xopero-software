@@ -5,10 +5,8 @@ namespace FileOperations
 {
     public static class CopyDelete
     {
-        static string rootDir = "C:\\zadanie1";
-        public static string Copy(string source, string title)
+        public static string Copy(string source, string destination, string title)
         {
-            string destination = Path.Combine(rootDir, "Copy"); 
             Directory.CreateDirectory(destination);
             destination = Path.Combine(destination, Path.GetFileName(source));
             string fileName, destFile;
@@ -17,22 +15,15 @@ namespace FileOperations
                 switch (Misc.IsFolder(source))
                 {
                     case true:
-                        if (Directory.Exists(source))
+                        foreach (string dirPath in Directory.GetDirectories(source, "*", SearchOption.AllDirectories))
                         {
-                            string lastDirectory = Path.GetFileName(source);
-                            string newDestination = Path.Combine(destination, lastDirectory);
-                            if (!Directory.Exists(newDestination)) 
-                                Directory.CreateDirectory(newDestination);
-
-                            string[] files = Directory.GetFiles(source);
-                            foreach (string s in files)
-                            {
-                                fileName = Path.GetFileName(s);
-                                destFile = Path.Combine(newDestination, fileName);
-                                File.Copy(s, destFile, true);
-                            }
+                            Directory.CreateDirectory(dirPath.Replace(source, destination));
                         }
-                        else return "Ścieżka nie istnieje.";
+
+                        foreach (string filePath in Directory.GetFiles(source, "*", SearchOption.AllDirectories))
+                        {
+                            File.Copy(filePath, filePath.Replace(source, destination), true);
+                        }
                         break;
                     case false:
                         File.Copy(source, destination, true);

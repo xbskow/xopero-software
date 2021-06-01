@@ -31,11 +31,11 @@ namespace zadanie1
                     switch (task.type)
                     {
                         case "encrypt":
-                            threads[threadCount] = new Thread(() => debugOutput(Encryption.Encrypt(task.source, task.title, task.verify)));
+                            threads[threadCount] = new Thread(() => debugOutput(Encryption.Encrypt(task.source, task.title, task.verify, task.encryptionPassword)));
                             threads[threadCount].IsBackground = true;
                             break;
                         case "decrypt":
-                            threads[threadCount] = new Thread(() => debugOutput(Encryption.Decrypt(task.source, task.title)));
+                            threads[threadCount] = new Thread(() => debugOutput(Encryption.Decrypt(task.source, task.title, task.encryptionPassword)));
                             break;
                         case "compress":
                             threads[threadCount] = new Thread(() => debugOutput(Compression.Compress(task.source, task.title, task.verify)));
@@ -45,7 +45,7 @@ namespace zadanie1
                             threads[threadCount] = new Thread(() => debugOutput(Compression.Decompress(task.source, task.title)));
                             break;
                         case "copy":
-                            threads[threadCount] = new Thread(() => debugOutput(CopyDelete.Copy(task.source, task.title)));
+                            threads[threadCount] = new Thread(() => debugOutput(CopyDelete.Copy(task.source, task.copyDestination, task.title)));
                             break;
                         case "delete":
                             threads[threadCount] = new Thread(() => debugOutput(CopyDelete.Delete(task.source)));
@@ -82,7 +82,8 @@ namespace zadanie1
                 {
                     debugOutput($"json object: {jsonQuery.ToString()}");
                     debugOutput($"\ntask info:");
-                    debugOutput($"\n - name: {i.task.type}");
+                    debugOutput($"\n - title: {i.task.title}");
+                    debugOutput($"\n - type: {i.task.type}");
                     debugOutput($"\n - source: {i.task.source}");
                     UseFunctionality(jsonQuery);
                     debugOutput($"Rozpoczęto zadanie {i.task.title}\n\n");
