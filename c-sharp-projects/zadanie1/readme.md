@@ -1,22 +1,22 @@
 # Before pulling, read me
-* "verify" boolean is for optional checksum verification
-* "verify" boolean is here only for encryption and compression. It doesn't affect anything if in other type of action. It's set to false if gotten rid of
-* "date" and "time" serve no functionality as those are only there as placeholders **as of yet** that's the next thing I'm going to work on
+* `verify` boolean is for optional checksum verification
+* `verify` boolean is here only for encryption and compression. It doesn't affect anything if in other type of action. It's set to false if gotten rid of
+* `date` and `time` serve no functionality as those are only there as placeholders **as of yet** that's the next thing I'm going to work on
 * Logic is stored in FileOperations class library in c-sharp-projects\FileOperations
 
-## "type" options
-- "encrypt"
-- "decrypt"
-- "compress"
-- "decompress"
-- "copy"
-- "delete"
+## `type` options
+- `encrypt`
+- `decrypt`
+- `compress`
+- `decompress`
+- `copy`
+- `delete`
 
 ## Latest changes
-- added "copyDestination" variable required for every "copy" task
-- added "encryptionPassword" variable required for every "encrypt"/"decrypt" task
+- added `copyDestination` variable required for every `copy` task
+- added `encryptionPassword` variable required for every `encrypt`/`decrypt` task
 - an error with copying directories without subdirectories in them has been found and dealt with
-- ProtectedData was changed back to SharpAESCrypt for multiplatform purposes
+- `ProtectedData` was changed back to `SharpAESCrypt` for multiplatform purposes
 
 ## Json example
 ```
