@@ -26,42 +26,56 @@ namespace zadanie1
             foreach (JsonOps.taskArr taskDetails in jsonQuery.tasks)
             {
                 JsonOps.taskInfo task = taskDetails.task;
+                DateTime datetime;
+                try
+                {
+                    datetime = DateTime.Parse(task.datetime);
+                    if (Misc.TimeUntil(datetime) > 0)
+                        debugOutput($"Zadanie {task.title} zostanie rozpoczęte: {datetime.ToLongDateString()} o godzinie: {datetime.ToLongTimeString()} \n\n");
+                    else
+                        debugOutput($"Rozpoczęto zadanie {task.title}\n\n");
+                }
+                catch (Exception)
+                {
+                    datetime = DateTime.Now;
+                    debugOutput($"Rozpoczęto zadanie {task.title}\n\n");
+                }
+                
                 try
                 {
                     switch (task.type)
                     {
                         case "encrypt":
-                            threads[threadCount] = new Thread(() => debugOutput(Encryption.Encrypt(task.source, task.title, task.verify, task.encryptionPassword)));
+                            threads[threadCount] = new Thread(() => debugOutput(Encryption.Encrypt(task.source, task.title, task.verify, task.encryptionPassword, datetime)));
                             threads[threadCount].IsBackground = true;
                             break;
                         case "decrypt":
-                            threads[threadCount] = new Thread(() => debugOutput(Encryption.Decrypt(task.source, task.title, task.encryptionPassword)));
+                            threads[threadCount] = new Thread(() => debugOutput(Encryption.Decrypt(task.source, task.title, task.encryptionPassword, datetime)));
                             break;
                         case "compress":
-                            threads[threadCount] = new Thread(() => debugOutput(Compression.Compress(task.source, task.title, task.verify)));
+                            threads[threadCount] = new Thread(() => debugOutput(Compression.Compress(task.source, task.title, task.verify, datetime)));
                             threads[threadCount].IsBackground = true;
                             break;
                         case "decompress":
-                            threads[threadCount] = new Thread(() => debugOutput(Compression.Decompress(task.source, task.title)));
+                            threads[threadCount] = new Thread(() => debugOutput(Compression.Decompress(task.source, task.title, datetime)));
                             break;
                         case "copy":
-                            threads[threadCount] = new Thread(() => debugOutput(CopyDelete.Copy(task.source, task.copyDestination, task.title)));
+                            threads[threadCount] = new Thread(() => debugOutput(CopyDelete.Copy(task.source, task.copyDestination, task.title, datetime)));
                             break;
                         case "delete":
-                            threads[threadCount] = new Thread(() => debugOutput(CopyDelete.Delete(task.source)));
+                            threads[threadCount] = new Thread(() => debugOutput(CopyDelete.Delete(task.source, datetime)));
                             break;
                         default:
                             debugOutput($"Zadanie {task.type} nie jest w puli dostępnych zadań");
                             break;
                     }
-                    threads[threadCount].Start();
-                    threadCount++;
-                }
-                catch (FileNotFoundException e)
-                {
-                    debugOutput($"{e.Message} w zadaniu {task.title}");
-                }
-
+                        threads[threadCount].Start();
+                        threadCount++;
+                    }
+                    catch (FileNotFoundException e)
+                    {
+                        debugOutput($"{e.Message} w zadaniu {task.title}");
+                    }
             }
         }
         private void clearButton_Click(object sender, EventArgs e)
@@ -85,10 +99,9 @@ namespace zadanie1
                     debugOutput($"\n - title: {i.task.title}");
                     debugOutput($"\n - type: {i.task.type}");
                     debugOutput($"\n - source: {i.task.source}");
+
                     UseFunctionality(jsonQuery);
-                    debugOutput($"Rozpoczęto zadanie {i.task.title}\n\n");
                 }
-                debugOutput(jsonQuery.tasks.Length.ToString());
             }
             catch (Exception ex)
             {
@@ -113,6 +126,5 @@ namespace zadanie1
             }
         }
         #endregion
-
     }
 }

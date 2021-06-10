@@ -6,9 +6,11 @@ namespace FileOperations
 {
     public static class Compression
     {
+        
         static string rootDir = "C:\\zadanie1";
-        public static string Compress(string source, string title, bool verify)
+        public static string Compress(string source, string title, bool verify, DateTime datetime)
         {
+            Misc.Schedule(Misc.TimeUntil(datetime));
             string verification = "";
             string destination = Path.Combine(rootDir, "Compress");
             Directory.CreateDirectory(destination);
@@ -41,7 +43,7 @@ namespace FileOperations
                 }
                 if (verify)
                 {
-                    Decompress(destination, title);
+                    Decompress(destination, title, datetime);
                     verification = " --- " + Checksum.CompareChecksums(source, Path.Combine(rootDir, "Decompress", Path.GetFileNameWithoutExtension(destination)));
                     File.Delete(Path.Combine(rootDir, "Decompress", Path.GetFileNameWithoutExtension(destination)));
                 }
@@ -53,8 +55,9 @@ namespace FileOperations
             }
 
         }
-        public static string Decompress(string source, string title)
+        public static string Decompress(string source, string title, DateTime datetime)
         {
+            Misc.Schedule(Misc.TimeUntil(datetime));
             string destination = Path.Combine(rootDir, "Decompress");
             Directory.CreateDirectory(destination);
             try

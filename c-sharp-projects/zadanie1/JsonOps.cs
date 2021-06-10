@@ -9,8 +9,6 @@ namespace zadanie1
     class JsonOps
     {
         public taskArr[] tasks;
-        public string date { get; set; }
-        public string time { get; set; }
 
         public class taskInfo
         {
@@ -20,6 +18,7 @@ namespace zadanie1
             public string copyDestination { get; set; }
             public string encryptionPassword { get; set; }
             public bool verify { get; set; }
+            public string datetime { get; set; }
         }
         public class taskArr
         {

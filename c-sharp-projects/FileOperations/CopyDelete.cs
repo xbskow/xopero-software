@@ -5,8 +5,9 @@ namespace FileOperations
 {
     public static class CopyDelete
     {
-        public static string Copy(string source, string destination, string title)
+        public static string Copy(string source, string destination, string title, DateTime datetime)
         {
+            Misc.Schedule(Misc.TimeUntil(datetime));
             Directory.CreateDirectory(destination);
             destination = Path.Combine(destination, Path.GetFileName(source));
             string fileName, destFile;
@@ -37,8 +38,9 @@ namespace FileOperations
             }
 
         }
-        public static string Delete(string source)
+        public static string Delete(string source, DateTime datetime)
         {
+            Misc.Schedule(Misc.TimeUntil(datetime));
             switch (Misc.IsFolder(source))
             {
                 case true:
